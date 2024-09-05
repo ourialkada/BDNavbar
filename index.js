@@ -14,7 +14,7 @@ window.onload = function(){
 	  formatter = new Intl.DateTimeFormat([], options23);
 	
 	  console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
-
+ 
 const today = formatter.format(new Date())
 var endofweek = 7 - today.getDay() - 1
 
