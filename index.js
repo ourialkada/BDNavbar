@@ -2,9 +2,19 @@ import readingTime from "reading-time";
 import {HebrewCalendar, HDate, Location, Event} from '@hebcal/core';
 
 window.onload = function(){
-    
+    let options23 = {
+		timeZone: 'America/Los_Angeles',
+		year: 'numeric',
+		month: 'numeric',
+		day: 'numeric',
+		hour: 'numeric',
+		minute: 'numeric',
+		second: 'numeric',
+	  },
+	  formatter = new Intl.DateTimeFormat([], options23);
+	
 
-const today = new Date(); 
+const today = formatter.format(new Date())
 var endofweek = 7 - today.getDay() - 1
 
 console.log(endofweek)
