@@ -59,7 +59,7 @@ const options = {
 
 		}
 		if(ev.render('en').includes('Candle'))
-		{
+		{ 
 			time = ev.render('en');
 			
 		}
