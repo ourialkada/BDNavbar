@@ -10,20 +10,31 @@ var _core = require('@hebcal/core');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.onload = function () {
-	var options23 = {
-		timeZone: 'America/Los_Angeles',
-		year: 'numeric',
-		month: 'numeric',
+	// set the date to show in PST timezone
+	var date = new Date();
+	var timezoneOffset = date.getTimezoneOffset();
+	var pstOffset = -480; // this is the offset for the Pacific Standard Time timezone
+	var adjustedTime = new Date(date.getTime() + (pstOffset + timezoneOffset) * 60 * 1000);
+
+	// display the date and time in PST timezone
+	var options22 = {
 		day: 'numeric',
+		month: 'numeric',
+		year: 'numeric',
 		hour: 'numeric',
 		minute: 'numeric',
-		second: 'numeric'
-	},
-	    formatter = new Intl.DateTimeFormat([], options23);
-
+		second: 'numeric',
+		timeZone: 'America/Los_Angeles'
+	};
+	var pstDateTime = adjustedTime.toLocaleString('en-US', options22);
+	console.log(pstDateTime); // Output: 2/16/2022, 11:01:20 AM
+	console.log('343');
 	console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
 
-	var today = formatter.format(new Date());
+	var today = new Date(pstDateTime);
+	var today3 = new Date(pstDateTime);
+
+	console.log(today); // Output: 2/16/2022, 11:01:20 AM
 	var endofweek = 7 - today.getDay() - 1;
 
 	console.log(endofweek);
@@ -53,11 +64,11 @@ window.onload = function () {
 			var ev = _step.value;
 
 			var hd = ev.getDate();
-			var date = hd.greg();
-			console.log(date.toLocaleDateString(), ev.render('en'), hd.toString());
+			var _date = hd.greg();
+			console.log(_date.toLocaleDateString(), ev.render('en'), hd.toString());
 
 			if (ev.render('en').includes('Parashat')) {
-				document.getElementById("LeftDate").innerText = today.toDateString() + " | " + hd.toString();
+				document.getElementById("LeftDate").innerText = today3.toDateString() + " | " + hd.toString();
 				document.getElementById("MiddleDate").innerText = ev.render('en');
 			}
 			if (ev.render('en').includes('Candle')) {
